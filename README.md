@@ -11,6 +11,18 @@ Often I'm working in a file which is several logical "components" deep, trying t
 With tree tabs, you can easily give child/parent/sibling relationships to tabs. This makes it much easier to quickly jump between multiple open files which call/render eachother while working in complex codebases. 
 
 
+## To Run Locally
+```
+yarn // install dependencies
+yarn run package // build dist 
+```
+
+in VSCode:
+```
+F5 -> Run // Run Extension
+Cmd+P -> Hello World // invoke extension from command pallette
+```
+
 ## Features
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
