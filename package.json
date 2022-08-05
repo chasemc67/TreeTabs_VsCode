@@ -19,7 +19,24 @@
         "command": "treetabs-vscode.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tree-tabs",
+          "title": "Tree Tabs",
+          "icon": "resources/tree-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "tree-tabs": [
+        {
+          "id": "tab-tree",
+          "name": ""
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "yarn run package",
