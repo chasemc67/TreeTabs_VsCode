@@ -1,16 +1,37 @@
 import * as vscode from "vscode";
 
 export function activate(context: vscode.ExtensionContext) {
+  // Track current webview panel
+  let currentPanel: vscode.WebviewPanel | undefined = undefined;
+
   context.subscriptions.push(
     vscode.commands.registerCommand("treetabs-vscode.start", () => {
-      const panel = vscode.window.createWebviewPanel(
-        "treeTabs", // identifies the type of the webView. Used Internally
-        "Tree Tabs", // Title of the panel displayed to the user
-        vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
-        {} // Webview options.
-      );
+      const columnToShowIn = vscode.window.activeTextEditor
+        ? vscode.window.activeTextEditor.viewColumn
+        : undefined;
 
-      panel.webview.html = getWebviewContent();
+      if (currentPanel) {
+        // If we already have a panel, show it in the target location
+        currentPanel.reveal(columnToShowIn);
+      } else {
+        // Otherwise create a new panel
+        currentPanel = vscode.window.createWebviewPanel(
+          "treeTabs", // identifies the type of the webView. Used Internally
+          "Tree Tabs", // Title of the panel displayed to the user
+          // vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
+          columnToShowIn,
+          {} // Webview options.
+        );
+        currentPanel.webview.html = getWebviewContent();
+        currentPanel.onDidDispose(
+          () => {
+            // clear anything that needs to be cleared if user closes webview
+            currentPanel = undefined;
+          },
+          null,
+          context.subscriptions
+        );
+      }
     })
   );
 }
