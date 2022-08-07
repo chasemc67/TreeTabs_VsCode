@@ -10,7 +10,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:treetabs-vscode.helloWorld"
+    "onCommand:treetabs-vscode.helloWorld",
+    "onCommand:treetabs-vscode.start"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -18,6 +19,11 @@
       {
         "command": "treetabs-vscode.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "treetabs-vscode.start",
+        "title": "Open TreeTabs WebView",
+        "category": "Tree Tabs"
       }
     ],
     "viewsContainers": {

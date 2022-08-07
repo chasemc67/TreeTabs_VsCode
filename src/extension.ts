@@ -23,6 +23,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(disposable);
 
+	// Webview Action
+	context.subscriptions.push(
+		vscode.commands.registerCommand("treetabs-vscode.start", () => {
+			const panel = vscode.window.createWebviewPanel(
+				'treeTabs', // identifies the type of the webView. Used Internally
+				'Tree Tabs', // Title of the panel displayed to the user 
+				vscode.ViewColumn.One, // Editor column to show the new webview panel in. 
+				{} // Webview options.
+			)
+		})
+	)
 
 	const rootPath =
 	vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0
