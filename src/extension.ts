@@ -29,7 +29,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const panel = vscode.window.createWebviewPanel(
 				'treeTabs', // identifies the type of the webView. Used Internally
 				'Tree Tabs', // Title of the panel displayed to the user 
-				vscode.ViewColumn.One, // Editor column to show the new webview panel in. 
+				vscode.ViewColumn.Two, // Editor column to show the new webview panel in. 
 				{} // Webview options.
 			)
 		})
