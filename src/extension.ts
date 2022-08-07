@@ -2,6 +2,8 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
+import {NodeDependenciesProvider} from './TreeDataProvider';
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -20,6 +22,17 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	context.subscriptions.push(disposable);
+
+
+	const rootPath =
+	vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0
+	? vscode.workspace.workspaceFolders[0].uri.fsPath
+	: "undefined";
+	vscode.window.registerTreeDataProvider(
+	'tab-tree',
+	new NodeDependenciesProvider(rootPath)
+	);
+
 }
 
 // this method is called when your extension is deactivated
