@@ -3,6 +3,7 @@
 import * as vscode from 'vscode';
 
 import {NodeDependenciesProvider} from './TreeDataProvider';
+import * as webView from './webView';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -24,16 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 
 	// Webview Action
-	context.subscriptions.push(
-		vscode.commands.registerCommand("treetabs-vscode.start", () => {
-			const panel = vscode.window.createWebviewPanel(
-				'treeTabs', // identifies the type of the webView. Used Internally
-				'Tree Tabs', // Title of the panel displayed to the user 
-				vscode.ViewColumn.Two, // Editor column to show the new webview panel in. 
-				{} // Webview options.
-			)
-		})
-	)
+	webView.activate(context);
 
 	const rootPath =
 	vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders.length > 0
