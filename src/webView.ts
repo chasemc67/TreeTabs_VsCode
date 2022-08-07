@@ -19,8 +19,11 @@ export function activate(context: vscode.ExtensionContext) {
           "treeTabs", // identifies the type of the webView. Used Internally
           "Tree Tabs", // Title of the panel displayed to the user
           // vscode.ViewColumn.Two, // Editor column to show the new webview panel in.
-          columnToShowIn,
-          {} // Webview options.
+          columnToShowIn || vscode.ViewColumn.One,
+          {
+            enableScripts: true,
+            // localResourceRoots: [vscode.Uri.file(context.extensionPath)], // file system security
+          }
         );
         currentPanel.webview.html = getWebviewContent();
         currentPanel.onDidDispose(
